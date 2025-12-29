@@ -7,9 +7,22 @@ from pybricks.tools import wait
 hub = PrimeHub()
 
 #Setup
-left_motor = Motor(Port.C, Direction.COUNTERCLOCKWISE)
-right_motor = Motor(Port.D)
-drive_base = DriveBase(left_motor, right_motor, wheel_diameter=56, axle_track=110)
+def setup():
+    hub = PrimeHub()
+
+    left_motor = Motor(Port.C, Direction.COUNTERCLOCKWISE)
+    right_motor = Motor(Port.D)
+
+    drive_base = DriveBase(
+        left_motor,
+        right_motor,
+        wheel_diameter=56,
+        axle_track=110
+    )
+
+    return hub, drive_base
+
+hub, drive_base = setup()
 
 #3.1.A: Living on the edge
 def living_on_the_edge():
