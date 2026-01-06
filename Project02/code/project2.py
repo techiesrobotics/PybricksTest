@@ -5,12 +5,15 @@ from pybricks.robotics import DriveBase
 from pybricks.tools import wait, StopWatch
 from DriveBase import *
 
-SetSpeed(250)
-
+#Drive in a square
 def DriveSquare(side_length):
     for _ in range(4):
         MoveForward(side_length)
         TurnRight(90)
     drive_base.brake()
 
-DriveSquare(250)
+def main():
+    DriveSquare(250)
+
+if __name__ == "__main__":
+    main()
