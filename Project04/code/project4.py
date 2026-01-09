@@ -3,7 +3,7 @@ from pybricks.pupdevices import Motor, ColorSensor, UltrasonicSensor, ForceSenso
 from pybricks.parameters import Button, Color, Direction, Port, Side, Stop
 from pybricks.robotics import DriveBase
 from pybricks.tools import wait, multitask, run_task
-from DriveBase import *
+from TRDriveBase import *
 
 # Drive in a square
 def drive_square(side_length):
@@ -223,7 +223,7 @@ async def dance_square(side_length):
 # turning 90 degrees while blinking a red light. Once you have created these,
 # where should you place the function calls to make the robot drive in
 # a square while blinking the lights as instructed?
-
+# https://www.youtube.com/watch?v=VXUUibKrono&list=PLjWRBRiZoAREPd1psLxDFbguaKq5NnDLl
 
 async def straight_task(side_length):
     await multitask(
@@ -257,6 +257,7 @@ async def dance_square_tasks(side_length):
 # reduce it to three tasks. You will see two print statements and a wait command
 # floating in your code. Where should you place them to achieve the same
 # result as before? You may delete code if needed.
+# https://www.youtube.com/watch?v=NLfy1wkm6Eo&list=PLjWRBRiZoAREPd1psLxDFbguaKq5NnDLl
 
 async def combined_task():
     hub.light.on(Color.RED)
@@ -279,6 +280,7 @@ async def run_multitask():
 # doesn’t get there in two seconds. Discuss ⸺ When is this technique useful
 # in robotics competitions? How is this different from just driving in reverse
 # for two seconds? What are the pros and cons of either approach?
+# https://www.youtube.com/watch?v=pY8U6NyP9rA&list=PLjWRBRiZoAREPd1psLxDFbguaKq5NnDLl
 
 async def drive_back(distance):
     await drive_base.straight(-distance)
@@ -300,6 +302,7 @@ async def backing_up(distance,time):
 # messages will be in? If not, what does it depend on? Is it possible to use
 # multiple function calls instead of multitasking (concurrent) code? If not,
 # how close can you get to the same output? Which differences remain?
+# https://www.youtube.com/watch?v=CQXbLyL-RZg&list=PLjWRBRiZoAREPd1psLxDFbguaKq5NnDLl
 
 async def subtask():
     for count in range(5):
