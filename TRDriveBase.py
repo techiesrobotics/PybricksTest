@@ -11,6 +11,8 @@ right_motor = Motor(Port.D)
 distance_sensor = UltrasonicSensor(Port.A)
 color_sensor = ColorSensor(Port.B)
 
+watch = StopWatch()
+
 drive_base = DriveBase(left_motor, right_motor, wheel_diameter=56, axle_track=110)
 
 drive_base.settings(straight_speed=250)

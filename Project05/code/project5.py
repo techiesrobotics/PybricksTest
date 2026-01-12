@@ -2,7 +2,7 @@ from pybricks.hubs import PrimeHub
 from pybricks.pupdevices import Motor, ColorSensor, UltrasonicSensor, ForceSensor
 from pybricks.parameters import Button, Color, Direction, Port, Side, Stop
 from pybricks.robotics import DriveBase
-from pybricks.tools import wait, multitask, run_task
+from pybricks.tools import wait, StopWatch, multitask, run_task
 from TRDriveBase import *
 
 # Challenge #5.1.C: Measure and share ⸺ The technique to display sensor
@@ -24,6 +24,134 @@ def color_sensor_data():
 
 def distance_sensor_data():
     print("Distance (mm):", distance_sensor.distance())
+
+# Challenge #5.1.D: Where did the time go? ⸺ In the experiment,
+# the measurements are spaced almost exactly 100 ms apart. This might
+# give you the impression that measuring and printing values takes no
+# time at all. Actually, it only appears that way because 100 ms
+# is plenty of time to send a few numbers to your computer in the background
+# without holding up your program. If you print more text more quickly,
+# you will see it start to impact the time. To see this, try reducing the
+# wait time to 1 ms. Click the > icon on the Print block to add another
+# value and make it print something like “looooooong text”. Analyze the
+# time between the measurements. What is the smallest and biggest gap?
+# Are the time differences constant or do they change a lot? Discuss ⸺ Could
+# you have done the original experiment with the 100 ms pause without the 
+# stopwatch block? Why is it still better to keep it?
+
+def timed_distance(time_ms,repeat_amt):
+    print('Time', 'Distance', 'Long Text', sep=",")
+    for count in range(repeat_amt):
+        print(watch.time(), distance_sensor.distance(), 'looooooong text', sep=",")
+        wait(time_ms)
+
+# Challenge #5.1.E: Ramp it up ⸺ Add two Drive Base Configuration blocks
+# to your program to choose a new drive speed and acceleration. Verify that
+# it reaches your configured top speed at the given acceleration. To verify
+# the acceleration, take the change in speed and divide it by the time it took
+# to get to top speed. You can determine this from the printed values or
+# using a graph similar to the one above.
+# https://www.youtube.com/watch?v=oOHQ9wL5cik&list=PLjWRBRiZoARGk78h3BdMW4csmlazM5v3i
+
+async def drive_motion():
+    await drive_base.straight(250)
+    await wait(500)
+    await drive_base.straight(-250)
+    await wait(500)
+
+async def log_drive_data():
+    print('Time', 'Distance', 'Speed', sep=",")
+    while True:
+        print(watch.time(), drive_base.distance(), drive_base.state()[1], sep=",")
+        await wait(10)
+
+async def run_experiment_51E():
+    drive_base.settings(
+        straight_speed=400,
+        straight_acceleration=200
+    )
+
+    watch.reset()
+
+    await multitask(
+        drive_motion(),
+        log_drive_data(),
+        race=True,
+    )
+
+# Challenge #5.1.G: Where am I? ⸺ Create a program that records the Ultrasonic Sensor
+# distance measurement as the robot turns around, as shown below. Place the robot
+# in a corner and run the experiment. Create a graph with the robot angle on the
+# x-axis and the sensor distance on the y-axis. An example result is given below.
+# Based on the graph alone, can you determine the distances to the walls? What
+# about the starting angle with respect to the walls? Discuss ⸺ Some data points
+# appear to be missing (they are not behind the picture). Where are they? If you
+# squint, you can almost see two line segments that dip down in the middle.
+# Compare the angles of both dips. How far are they apart, and why? Why does a
+# line graph not work in this case? Some angles appear to have multiple clearly
+# distinct distance values. What does this overlap mean? Why does this occur just
+# in between the two dips mentioned above? Why is it useful to show the robot
+# angle on the x-axis instead of the time like we did so far?
+# https://www.youtube.com/watch?v=myLchRl1XwA&list=PLjWRBRiZoARGk78h3BdMW4csmlazM5v3i
+
+async def rotate_robot():
+    drive_base.reset()
+    await drive_base.turn(360)
+    await wait(200)
+
+async def log_angle_distance():
+    print("Angle,Distance")
+    while True:
+        angle = drive_base.angle()
+        distance = await distance_sensor.distance()
+        print(angle, distance, sep=",")
+        await wait(10)
+
+async def run_experiment_51G():
+    watch.reset()
+
+    await multitask(
+        rotate_robot(),
+        log_angle_distance(),
+        race=True
+    )
+
+# Challenge #5.1.H: Hitting a wall ⸺ Now it is your turn to design and implement an
+# experiment to determine the robot’s position. This time, have the robot drive
+# in a square parallel to the walls of a corner, as shown below. You decide which
+# values to record and plot in a graph. For example, you might record the Ultrasonic
+# Sensor distance or drive base angle. For this experiment, choose time for the X-axis.
+# Discuss ⸺ Before you run your experiment, sketch what you think the graphs will look like.
+# Assume that you start in corner A and that Q is 250 mm and R is 500 mm. Run the experiment
+# and verify your prediction. Next, run the experiment from starting position B, C, or D.
+# Based on the data, ask your teammates where they think the robot started.
+# https://www.youtube.com/watch?v=Z8QDkQSCFI4&list=PLjWRBRiZoARGk78h3BdMW4csmlazM5v3i
+
+async def drive_square(side_length=250):
+    for _ in range(4):
+        await drive_base.straight(side_length)
+        await drive_base.turn(90)
+        await wait(200)
+
+# --- Log time, distance, speed ---
+async def log_data():
+    print("Time,Distance,Speed")
+    while True:
+        time_ms = watch.time()
+        distance = await distance_sensor.distance()
+        speed = drive_base.state()[1]
+        print(time_ms, distance, speed, sep=",")
+        await wait(10)
+
+# --- Run the experiment ---
+async def run_experiment_51H():
+    drive_base.settings(straight_speed=300, straight_acceleration=200)
+    watch.reset()
+    await multitask(
+        drive_square(),
+        log_data(),
+        race=True
+    )
 
 # Challenge #5.2.A: Comparing the other way ⸺ You can change how the
 # comparison is performed by adjusting the comparison operator in code.
@@ -306,7 +434,7 @@ def wave_turn():
 #---------------------------------------------------------------------
 
 def main():
-    wave_turn()
+    run_task(run_experiment_51H())
 
 if __name__ == "__main__":
     main()
