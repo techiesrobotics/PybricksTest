@@ -5,7 +5,8 @@ from pybricks.robotics import DriveBase
 from pybricks.tools import wait, StopWatch
 from TRDriveBase import *
 
-#Drive in a square
+# Drive in a square
+# https://www.youtube.com/watch?v=tpoMPDKgzEc
 def DriveSquare(side_length):
     for _ in range(4):
         MoveForward(side_length)
