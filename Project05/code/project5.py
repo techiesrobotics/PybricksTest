@@ -221,12 +221,12 @@ def alternate_turns():
         while not distance_sensor.distance() <= 500:
             wait(0)
 
-        drive_base.straight(-250)
+        MoveBackward(250)
 
         if turn_right:
-            drive_base.turn(120)
+            TurnRight(120)
         else:
-            drive_base.turn(-120)
+            TurnLeft(120)
 
         turn_right = not turn_right
 
@@ -301,11 +301,11 @@ def avoid_wall():
         while not distance_sensor.distance() <= 500:
             wait(0)
         if distance_sensor.distance() <= 250:
-            drive_base.straight(-250)
-            drive_base.turn(-120)
+            MoveBackward(250)
+            TurnLeft(120)
         else:
-            drive_base.straight(-250)
-            drive_base.turn(120)
+            MoveBackward(250)
+            TurnRight(120)
 
 # Challenge #5.2.I: Uphill both ways ⸺ In the example above, it reverses
 # in both cases before turning left or right. Could you use just a single
@@ -325,12 +325,12 @@ def avoid_wall_alt():
 
         current_distance = distance_sensor.distance()
 
-        drive_base.straight(-250)
+        MoveBackward(250)
 
         if current_distance <= 250:
-            drive_base.turn(-120)
+            TurnLeft(120)
         else:
-            drive_base.turn(120)
+            TurnRight(120)
 
 # Challenge #5.2.J: Wait until you see it ⸺ The wait-until condition
 # provides a simple and effective way to wait on a condition. Under
@@ -365,12 +365,12 @@ def bumper_turn():
             wait(0)
         if Button.RIGHT in hub.buttons.pressed():
             print('Left bumper hit!')
-            drive_base.straight(-50)
-            drive_base.turn(90)
+            MoveBackward(50)
+            TurnRight(90)
         else:
             print('Right bumper hit!')
-            drive_base.straight(-50)
-            drive_base.turn(-90)
+            MoveBackward(50)
+            TurnLeft(90)
 
 # Challenge #5.3.B: In range ⸺ Create a program that makes the robot play
 # sounds while the Ultrasonic Sensor distance is between 300 mm and 600 mm.
@@ -429,7 +429,7 @@ def wave_turn():
             wait(10)
 
         drive_base.stop()
-        drive_base.turn(90)
+        TurnRight(90)
 
 #---------------------------------------------------------------------
 

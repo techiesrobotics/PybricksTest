@@ -113,9 +113,9 @@ def drive_square_print(side_length):
     print("----Starting square----")
     for _ in range(4):
         print("Straight")
-        robot.drive_base.straight(side_length)
+        robot.MoveForward(side_length)
         print("Turn")
-        robot.drive_base.turn(90)
+        robot.TurnRight(90)
     print("----Completed a square----")
     robot.drive_base.brake()
 

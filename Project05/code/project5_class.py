@@ -226,9 +226,9 @@ def alternate_turns():
         robot.MoveBackward(250)
 
         if turn_right:
-            robot.drive_base.turn(120)
+            robot.TurnRight(120)
         else:
-            robot.drive_base.turn(-120)
+            robot.TurnLeft(120)
 
         turn_right = not turn_right
 
