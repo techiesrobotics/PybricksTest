@@ -37,19 +37,19 @@ class TRRobot:
         self.drive_base.use_gyro(True)
 
     def SetGyro(self, enabled: bool):
-        self.drive_base.use_gyro(enabled)
+        return self.drive_base.use_gyro(enabled)
 
     def SetSpeed(self, speed):
-        self.drive_base.settings(straight_speed=speed)
+        return self.drive_base.settings(straight_speed=speed)
 
     def MoveForward(self, distance):
-        self.drive_base.straight(distance)
+        return self.drive_base.straight(distance)
 
     def MoveBackward(self, distance):
-        self.drive_base.straight(-distance)
+        return self.drive_base.straight(-distance)
 
     def TurnRight(self, degrees):
-        self.drive_base.turn(degrees)
+        return self.drive_base.turn(degrees)
 
     def TurnLeft(self, degrees):
-        self.drive_base.turn(-degrees)
+        return self.drive_base.turn(-degrees)

@@ -199,11 +199,11 @@ async def play_melody():
 async def drive_square_dance(side_length):
     for i in range(4):
         await multitask(
-            drive_base.straight(side_length),
+            MoveForward(side_length),
             change_color(Color.BLUE)
         )
         await multitask(
-            drive_base.turn(90),
+            TurnRight(90),
             change_color(Color.RED)
         )
     blinking["active"] = False
@@ -227,13 +227,13 @@ async def dance_square(side_length):
 
 async def straight_task(side_length):
     await multitask(
-        drive_base.straight(side_length),
+        MoveForward(side_length),
         change_color(Color.BLUE)
     )
 
 async def turn_task(angle):
     await multitask(
-        drive_base.turn(angle),
+        TurnRight(angle),
         change_color(Color.RED)
     )
 
@@ -283,7 +283,7 @@ async def run_multitask():
 # https://www.youtube.com/watch?v=pY8U6NyP9rA&list=PLjWRBRiZoAREPd1psLxDFbguaKq5NnDLl
 
 async def drive_back(distance):
-    await drive_base.straight(-distance)
+    await MoveBackward(distance)
     print(f"Backed up {distance} mm!")
 
 async def timeout(time):
@@ -331,7 +331,7 @@ async def run_subtasks():
     )
 
 def main():
-    run_task(run_subtasks())
+    run_task(dance_square(100))
 
 if __name__ == "__main__":
     main()

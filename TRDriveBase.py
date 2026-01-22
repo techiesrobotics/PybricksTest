@@ -19,19 +19,19 @@ drive_base.settings(straight_speed=250)
 drive_base.use_gyro(True)
 
 def SetGyro(boolean):
-    drive_base.use_gyro(boolean)
+    return drive_base.use_gyro(boolean)
 
 def SetSpeed(speed):
-    drive_base.settings(straight_speed=speed)
+    return drive_base.settings(straight_speed=speed)
 
 def MoveForward(distance):
-    drive_base.straight(distance)
+    return drive_base.straight(distance)
 
 def MoveBackward(distance):
-    drive_base.straight(-1* distance)
+    return drive_base.straight(-1* distance)
 
 def TurnRight(degrees):
-    drive_base.turn(degrees)
+    return drive_base.turn(degrees)
 
 def TurnLeft(degrees):
-    drive_base.turn(-1* degrees)
+    return drive_base.turn(-1* degrees)
