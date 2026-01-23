@@ -54,9 +54,9 @@ def timed_distance(time_ms,repeat_amt):
 # https://www.youtube.com/watch?v=oOHQ9wL5cik&list=PLjWRBRiZoARGk78h3BdMW4csmlazM5v3i
 
 async def drive_motion():
-    await MoveForward(250)
+    await MoveForward_As(250)
     await wait(500)
-    await MoveBackward(250)
+    await MoveBackward_As(250)
     await wait(500)
 
 async def log_drive_data():
@@ -96,7 +96,7 @@ async def run_experiment_51E():
 
 async def rotate_robot():
     drive_base.reset()
-    await TurnRight(360)
+    await TurnRight_As(360)
     await wait(200)
 
 async def log_angle_distance():
@@ -129,8 +129,8 @@ async def run_experiment_51G():
 
 async def drive_square(side_length=250):
     for _ in range(4):
-        await MoveForward(side_length)
-        await TurnRight(90)
+        await MoveForward_As(side_length)
+        await TurnRight_As(90)
         await wait(200)
 
 # --- Log time, distance, speed ---

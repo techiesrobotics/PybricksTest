@@ -201,11 +201,11 @@ async def play_melody():
 async def drive_square_dance(side_length):
     for i in range(4):
         await multitask(
-            robot.MoveForward(side_length),
+            robot.MoveForward_As(side_length),
             change_color(Color.BLUE)
         )
         await multitask(
-            robot.TurnRight(90),
+            robot.TurnRight_As(90),
             change_color(Color.RED)
         )
     blinking["active"] = False
@@ -229,13 +229,13 @@ async def dance_square(side_length):
 
 async def straight_task(side_length):
     await multitask(
-        robot.MoveForward(side_length),
+        robot.MoveForward_As(side_length),
         change_color(Color.BLUE)
     )
 
 async def turn_task(angle):
     await multitask(
-        robot.TurnRight(angle),
+        robot.TurnRight_As(angle),
         change_color(Color.RED)
     )
 
@@ -285,7 +285,7 @@ async def run_multitask():
 # https://www.youtube.com/watch?v=pY8U6NyP9rA&list=PLjWRBRiZoAREPd1psLxDFbguaKq5NnDLl
 
 async def drive_back(distance):
-    await robot.MoveBackward(distance)
+    await robot.MoveBackward_As(distance)
     print(f"Backed up {distance} mm!")
 
 async def timeout(time):
