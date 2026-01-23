@@ -33,25 +33,25 @@ def determineColor():
     myHSV = color_sensor_side.hsv(True)
     myColor = color_sensor_side.color(True)
 
-    if(Color.RED == myColor):
-        if(myHSV.h > ORANGE_LOW and myHSV.h < ORANGE_HIGH and myHSV.v > 20):
-            return "Orange"
-        elif(myHSV.h > RED_LOW and myHSV.h < RED_HIGH and myHSV.v > 20):
-            return "Red"
+    if myColor == Color.RED:
+		if ORANGE_LOW < myHSV.h < ORANGE_HIGH and myHSV.v > 20:
+			return "Orange"
+		elif RED_LOW < myHSV.h < RED_HIGH and 85 < myHSV.s < 95 and myHSV.v > 20:
+			return "Red"
 
-    if(Color.BLUE == myColor):
-        if(myHSV.h > PURPLE_LOW and myHSV.h < PURPLE_HIGH and myHSV.v > 20):
-            return "Purple"
-        elif(myHSV.h > 210 and myHSV.h < 225 and myHSV.v > 20):
-            return "Blue"
+    if myColor == Color.BLUE:
+		if PURPLE_LOW < myHSV.h < PURPLE_HIGH and myHSV.v > 20:
+			return "Purple"
+		elif 210 < myHSV.h < 225 and 75 < myHSV.s < 85 and myHSV.v > 20:
+			return "Blue"
 
-    if(Color.YELLOW == myColor):
-        if(myHSV.h > YELLOW_LOW and myHSV.h < YELLOW_HIGH and myHSV.v > 20):
-            return "Yellow"
+    if myColor == Color.YELLOW:
+		if YELLOW_LOW < myHSV.h < YELLOW_HIGH and 70 < myHSV.s < 80 and myHSV.v > 20:
+			return "Yellow"
 
-    if(Color.GREEN == myColor):
-        if(myHSV.h > GREEN_LOW and myHSV.h < GREEN_HIGH and myHSV.v > 20):
-            return "Green"
+    if myColor == Color.GREEN:
+		if GREEN_LOW < myHSV.h < GREEN_HIGH and 65 < myHSV.s < 75 and myHSV.v > 10:
+			return "Green"
 
     return "UNKNOWN"
 
