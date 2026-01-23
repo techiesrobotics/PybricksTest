@@ -4,6 +4,8 @@ from pybricks.parameters import Button, Color, Direction, Port, Side, Stop
 from pybricks.robotics import DriveBase
 from pybricks.tools import wait, StopWatch
 
+# Color Sensor detects accurately at around 10mm - 15mm distance
+
 ORANGE_HIGH = 20
 ORANGE_LOW = 0
 
