@@ -65,3 +65,9 @@ class TRRobot:
 
     async def TurnLeft_As(self, degrees):
         await self.drive_base.turn(-1* degrees)
+
+    async def moveArmUp(self, arm, speed, angle):
+        await self.arm.run_angle(speed, angle)
+
+    async def moveArmDown( self,arm, speed, angle):
+        await self.arm.run_angle(speed, -1 * angle)
