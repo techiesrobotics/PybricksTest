@@ -8,6 +8,9 @@ from TRRobo import *
 
 robot = TRRobot()
 
+# drive and detect color example:
+# https://www.youtube.com/watch?v=c2XkUQgEWeg
+
 def drive_and_detect_color(distance_mm):
     robot.drive_base.reset()
     robot.drive_base.drive(200, 0)
