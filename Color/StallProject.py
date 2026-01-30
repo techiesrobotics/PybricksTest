@@ -7,6 +7,8 @@ from TRRobo import *
 
 robot = TRRobot()
 
+# Arm Stall Example:
+# https://youtu.be/bL0dzXLOrcA
 async def DetectArmStall(arm, speed, angle, maxLoad):
     arm.reset_angle(0)
     arm.run(speed)
