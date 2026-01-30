@@ -9,10 +9,11 @@ class TRRobot:
         self,
         left_motor_port=Port.C,
         right_motor_port=Port.D,
+        arm_port=Port.E,
         distance_sensor_port=Port.A,
         color_sensor_port=Port.B,
         wheel_diameter=56,
-        axle_track=110,
+        axle_track=112,
         default_speed=250
     ):
 
@@ -20,6 +21,7 @@ class TRRobot:
 
         self.left_motor = Motor(left_motor_port, Direction.COUNTERCLOCKWISE)
         self.right_motor = Motor(right_motor_port)
+        self.arm_motor = Motor(arm_port)
 
         self.distance_sensor = UltrasonicSensor(distance_sensor_port)
         self.color_sensor = ColorSensor(color_sensor_port)
