@@ -52,4 +52,8 @@ async def MoveArmWithStallTimeDetection(
 
     arm.hold()
 
-run_task(MoveArmWithStallTimeDetection(robot.arm_motor,100,60))
+def main():
+    run_task(MoveArmWithStallTimeDetection(robot.arm_motor,100,60))
+
+if __name__ == "__main__":
+    main()
