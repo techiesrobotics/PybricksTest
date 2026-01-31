@@ -9,7 +9,7 @@ robot = TRRobot()
 
 # Arm Stall Example:
 # https://youtu.be/bL0dzXLOrcA
-async def DetectArmStall(arm, speed, angle, maxLoad):
+def DetectArmStall(arm, speed, angle, maxLoad):
     arm.reset_angle(0)
     arm.run(speed)
 
@@ -22,10 +22,11 @@ async def DetectArmStall(arm, speed, angle, maxLoad):
 
         wait(10)
 
-    arm.hold()
+    arm.brake()
+    
 
 
-async def MoveArmWithStallTimeDetection(
+def MoveArmWithStallTimeDetection(
     arm,
     speed,
     angle,
@@ -50,10 +51,9 @@ async def MoveArmWithStallTimeDetection(
             print("Motor was stalled")
             break
 
-    arm.hold()
-
+    arm.brake()
 def main():
-    run_task(MoveArmWithStallTimeDetection(robot.arm_motor,100,60))
+    MoveArmWithStallTimeDetection(robot.arm_motor,500,90)
 
 if __name__ == "__main__":
     main()
